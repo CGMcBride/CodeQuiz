@@ -4,14 +4,22 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Code Quiz</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<!-- I am putting a header here to it has a title -->
-		<h1>Conner's Code Quiz</h1>
-		<div id= "quiz"></div>
-		<!-- two buttons will be added to get next question and submit the quiz -->
-		<button id = "Next">Next</button>
-<button id= "submit">Submit Quiz</button>
-		</div id= "score"></div>
+		<div id= "noshow">
+			<h1>Conner's Code Quiz</h1>
+<p>click here to play</p>
+<button id= "play">Play</button>
+		</div>
+		
+		<div id= "quiz" class="hide">
+
+			<!-- two buttons will be added to get next question and submit the quiz -->
+			<h2 id= "question">question goes here</h2>
+			</div id= "choices" class= "choices"></div>
+		</div>
+		<script src= "script.js"></script>
 	</body>
 </html>
