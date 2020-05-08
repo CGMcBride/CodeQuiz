@@ -5,17 +5,44 @@ const pressPlay = document.getElementById("play");
 const noShow = document.getElementById("noshow");
 const qS = document.getElementById("question");
 let currentQuestionIndex = 0;
+var timeEl = document.querySelector(".time");
+var secondsLeft = 75;
 //move this into a separate js file.
 var letsPlayQuestions = [
 	{
-		title: "what color is the grass",
-		choices: ["green", "red", "brown", "yellow"],
-		answer: "green",
+		title:
+			"What is JavaScript element that represents either TRUE or FALSE values?",
+		choices: ["Boolean", "RegExp", "Event", "Condition"],
+		answer: "Boolean",
 	},
 	{
-		title: "what color is the sky",
-		choices: ["blue", "black", "gray", "red"],
-		answer: "blue",
+		title:
+			"What is the default behavior called that is used to move declarations to the top the current scope?",
+		choices: ["Arranging", "Sorting", "Jumping", "Hoisting"],
+		answer: "Hoisting",
+	},
+	{
+		title:
+			"What kind of statment is used to execute actions based on a trigger or condition?",
+		choices: [
+			"Fired Event",
+			"Boolean Variable",
+			"Default Behaivor",
+			"Conditional Statement",
+		],
+		answer: "Conditional Statement",
+	},
+	{
+		title:
+			"What is the object called that lets you work with both dates and time-relaated data?",
+		choices: ["Clock", "Time field", "Dates", "Time-warp"],
+		answer: "Dates",
+	},
+	{
+		title:
+			"What is the element used - and hidden - in code that explains things and makes the content more readable?",
+		choices: ["Quotations", "Comparisons", "Comments", "Notes"],
+		answer: "Comments",
 	},
 ];
 let time = letsPlayQuestions.length * 15;
@@ -41,3 +68,16 @@ function createQuestions() {
 // display quiz score
 // function showScore() {}
 pressPlay.onclick = beginQuiz;
+// Set time in a certain amount of time EXECUTE an action
+// Set
+function setTime() {
+	var timerInterval = setInterval(function () {
+		secondsLeft = -1;
+		timeEl.textContent = secondsLeft + " time until gameover";
+
+		if (secondsLeft === 0) {
+			clearInterval(timerInterval);
+			sendMessage();
+		}
+	}, 1000);
+}
