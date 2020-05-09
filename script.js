@@ -66,14 +66,15 @@ function beginQuiz() {
 }
 
 function createQuestions() {
-	setTime();
-	//alert("did this work?");
+	//new question
 	let currentQuestion = letsPlayQuestions[currentQuestionIndex];
-
+	// question
 	qS.textContent = currentQuestion.title;
+	// answer
 	currentAnswer = currentQuestion.answer;
-	// .each loop on currentQuestion.choices to render 4 buttons on the page
+	// choices to render bottons on screen
 	currentQuestion.choices.forEach(yourPick);
+	// I am calling the function yourPick
 	function yourPick(item) {
 		pickChoice.innerHTML +=
 			"<button class='select' value='" +
@@ -82,11 +83,7 @@ function createQuestions() {
 			item +
 			"</button><br /><hr /><br />";
 	}
-	// make sure thos buttons have same class that you can target
-	// var givenAnwer = button.value // green
-	// check if the pressed button is the right answer? (if else) if  (givenAnwer === currentQuestion.answer) {write the logic for correct answer} else {.. incorrect answer}
-	// currentQuestionIndex ++
-	//call function again to show you the next question
+	// check to see if each button has the correct choice selected
 }
 function showUp(e) {
 	console.log(e);
