@@ -1,16 +1,20 @@
+// connecting our HTML id's and classes
 const quizContainer = document.getElementById("quiz");
-// const submitQuiz = document.getElementById("submit");
+
 const showScore = document.getElementById("score");
 const pressPlay = document.getElementById("play");
 const noShow = document.getElementById("noshow");
 const qS = document.getElementById("question");
 const pickChoice = document.getElementById("choices");
+
+var timeEl = document.querySelector(".time");
+
+const results = document.getElementById("score");
+// default values
 let currentQuestionIndex = 0;
 let score = 0;
-var timeEl = document.querySelector(".time");
-var secondsLeft = 15;
-const results = document.getElementById("score");
-//move this into a separate js file.
+let secondsLeft = 75;
+let currentAnswer = "";
 var letsPlayQuestions = [
 	{
 		title:
@@ -128,7 +132,7 @@ pressPlay.onclick = beginQuiz;
 function setTime(event) {
 	// event.preventDefault();
 
-	secondsLeft = 15;
+	secondsLeft = 75;
 	setInterval(startTime, 1000);
 
 	function startTime() {
