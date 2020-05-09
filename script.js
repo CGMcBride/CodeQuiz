@@ -15,6 +15,7 @@ let currentQuestionIndex = 0;
 let score = 0;
 let secondsLeft = 75;
 let currentAnswer = "";
+// potentially run questions as a JSON
 var letsPlayQuestions = [
 	{
 		title:
