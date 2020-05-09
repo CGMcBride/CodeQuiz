@@ -59,9 +59,12 @@ function beginQuiz() {
 	noShow.setAttribute("class", "hide");
 	quizContainer.removeAttribute("class", "hide");
 	createQuestions();
+	// start timer
+	secondsLeft = 75;
+	clearInterval(a);
+	setTime();
 }
 
-let currentAnswer = "";
 function createQuestions() {
 	setTime();
 	//alert("did this work?");
