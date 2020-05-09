@@ -53,7 +53,6 @@ var letsPlayQuestions = [
 		answer: "Comments",
 	},
 ];
-// let time = letsPlayQuestions.length * 15;
 
 // begin by naming our function adding in questions, quiz container and results
 function beginQuiz() {
