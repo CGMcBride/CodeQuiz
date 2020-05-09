@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Code Quiz</title>
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<!-- I am putting a header here to it has a title -->
-		<div id= "noshow">
-			<h1>Conner's Code Quiz</h1>
-<p>click here to play</p>
-<button id= "play">Play</button>
-		</div>
-		
-		<div id= "quiz" class="hide">
 
-			<!-- two buttons will be added to get next question and submit the quiz -->
-			<h2 id= "question">question goes here</h2>
-			</div id= "choices" class= "choices"></div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Code Quiz</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<!-- I am putting a header here to it has a title -->
+	<div id="noshow">
+		<h1>Conner's Code Quiz</h1>
+		<p>click here to play</p>
+		<button id="play">Play</button>
+	</div>
+
+	<div id="quiz" class="hide">
+
+		<h2 class="time">Time</h2>
+		<!-- two buttons will be added to get next question and submit the quiz -->
+		<h2 id="question">question goes here</h2>
+		<div id="choices" class="choices">
 		</div>
-		<script src= "script.js"></script>
-	</body>
+	</div>
+	<div id="score" class="hide"></div>
+	<script src="script.js"></script>
+</body>
+
 </html>
