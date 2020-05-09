@@ -1,12 +1,15 @@
 const quizContainer = document.getElementById("quiz");
-const submitQuiz = document.getElementById("submit");
+// const submitQuiz = document.getElementById("submit");
 const showScore = document.getElementById("score");
 const pressPlay = document.getElementById("play");
 const noShow = document.getElementById("noshow");
 const qS = document.getElementById("question");
+const pickChoice = document.getElementById("choices");
 let currentQuestionIndex = 0;
+let score = 0;
 var timeEl = document.querySelector(".time");
-var secondsLeft = 75;
+var secondsLeft = 15;
+const results = document.getElementById("score");
 //move this into a separate js file.
 var letsPlayQuestions = [
 	{
@@ -45,7 +48,7 @@ var letsPlayQuestions = [
 		answer: "Comments",
 	},
 ];
-let time = letsPlayQuestions.length * 15;
+// let time = letsPlayQuestions.length * 15;
 
 // begin by naming our function adding in questions, quiz container and results
 function beginQuiz() {
@@ -53,31 +56,104 @@ function beginQuiz() {
 	quizContainer.removeAttribute("class", "hide");
 	createQuestions();
 }
+
+let currentAnswer = "";
 function createQuestions() {
+	setTime();
 	//alert("did this work?");
 	let currentQuestion = letsPlayQuestions[currentQuestionIndex];
 
 	qS.textContent = currentQuestion.title;
+	currentAnswer = currentQuestion.answer;
 	// .each loop on currentQuestion.choices to render 4 buttons on the page
+	currentQuestion.choices.forEach(yourPick);
+	function yourPick(item) {
+		pickChoice.innerHTML +=
+			"<button class='select' value='" +
+			item +
+			"' onclick = 'showUp(this.value)' >" +
+			item +
+			"</button><br /><hr /><br />";
+	}
 	// make sure thos buttons have same class that you can target
 	// var givenAnwer = button.value // green
 	// check if the pressed button is the right answer? (if else) if  (givenAnwer === currentQuestion.answer) {write the logic for correct answer} else {.. incorrect answer}
 	// currentQuestionIndex ++
 	//call function again to show you the next question
 }
+function showUp(e) {
+	console.log(e);
+	if (e === currentAnswer) {
+		console.log("you are correct");
+		pickChoice.innerHTML = "";
+		score++;
+		currentQuestionIndex++;
+		if (currentQuestionIndex < letsPlayQuestions.length) {
+			createQuestions();
+		} else {
+			presentScore();
+		}
+	} else {
+		console.log("you are not correct");
+		pickChoice.innerHTML = "";
+		score--;
+		currentQuestionIndex++;
+		if (currentQuestionIndex < letsPlayQuestions.length) {
+			createQuestions();
+		} else {
+			presentScore();
+		}
+	}
+}
+function presentScore() {
+	quizContainer.setAttribute("class", "hide");
+	results.removeAttribute("class", "hide");
+	results.innerHTML = "<p>Your total Score is " + score + "</p>";
+	setTimeout(goBack, 10000);
+	function goBack() {
+		results.innerHTML = "";
+		results.setAttribute("class", "hide");
+		noShow.removeAttribute("class", "hide");
+	}
+}
+// const select = document.querySelector("select");
+// document.addEventListener("click", select, function () {
+// 	alert("this is working");
+// });
 // display quiz score
-// function showScore() {}
+
 pressPlay.onclick = beginQuiz;
 // Set time in a certain amount of time EXECUTE an action
 // Set
-function setTime() {
-	var timerInterval = setInterval(function () {
-		secondsLeft = -1;
-		timeEl.textContent = secondsLeft + " time until gameover";
+function setTime(event) {
+	// event.preventDefault();
 
+	secondsLeft = 15;
+	setInterval(startTime, 1000);
+
+	function startTime() {
+		secondsLeft--;
+		timeEl.textContent = secondsLeft + " time until gameover";
 		if (secondsLeft === 0) {
-			clearInterval(timerInterval);
-			sendMessage();
+			clearInterval(startTime);
+			pickChoice.innerHTML = "";
+			score--;
+			currentQuestionIndex++;
+			if (currentQuestionIndex < letsPlayQuestions.length) {
+				createQuestions();
+			} else {
+				presentScore();
+			}
 		}
-	}, 1000);
+	}
+
+	// var timerInterval = setInterval(function () {
+	// 	secondsLeft = -1;
+	// 	timeEl.textContent = secondsLeft + " time until gameover";
+
+	// 	if (secondsLeft === 0) {
+	// 		clearInterval(timerInterval);
+	// 		sendMessage();
+	// 	}
+	// }, 1000);
 }
