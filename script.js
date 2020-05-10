@@ -1,22 +1,21 @@
-// connecting our HTML id's and classes
-const quizContainer = document.getElementById("quiz");
-
-const showScore = document.getElementById("score");
-const pressPlay = document.getElementById("play");
+// connecting HTML Ids and Classes
 const noShow = document.getElementById("noshow");
+const quizContainer = document.getElementById("quiz");
+const pressPlay = document.getElementById("play");
 const qS = document.getElementById("question");
 const pickChoice = document.getElementById("choices");
-
-var timeEl = document.querySelector(".time");
-
+let timeEl = document.querySelector(".time");
+const showScore = document.getElementById("score");
 const results = document.getElementById("score");
+
 // default values
 let currentQuestionIndex = 0;
 let score = 0;
-let secondsLeft = 75;
+let secondsLeft = 15;
 let currentAnswer = "";
-// potentially run questions as a JSON
-var letsPlayQuestions = [
+
+// questions = you can run as a JSON
+let letsPlayQuestions = [
 	{
 		title:
 			"What is JavaScript element that represents either TRUE or FALSE values?",
@@ -60,21 +59,23 @@ function beginQuiz() {
 	quizContainer.removeAttribute("class", "hide");
 	createQuestions();
 	// start timer
-	secondsLeft = 75;
+	secondsLeft = 15;
 	clearInterval(a);
 	setTime();
 }
 
 function createQuestions() {
-	//new question
+	// new question
 	let currentQuestion = letsPlayQuestions[currentQuestionIndex];
 	// question
 	qS.textContent = currentQuestion.title;
 	// answer
 	currentAnswer = currentQuestion.answer;
-	// choices to render bottons on screen
-	currentQuestion.choices.forEach(yourPick);
-	// I am calling the function yourPick
+	// choices
+	currentQuestion.choices.forEach(yourPick); //here you are calling function "youPick"
+	// you can also write this way too
+	// currentQuestion.choices.forEach(item){ "everything inside the youPick function" };
+
 	function yourPick(item) {
 		pickChoice.innerHTML +=
 			"<button class='select' value='" +
@@ -83,81 +84,84 @@ function createQuestions() {
 			item +
 			"</button><br /><hr /><br />";
 	}
-	// check to see if each button has the correct choice selected
 }
+
+// when you click to any choice run showUp function
+
 function showUp(e) {
-	console.log(e);
+	timeEl.textContent = "15 seconds left to answer this question";
+	// choice is matching with answer then
 	if (e === currentAnswer) {
-		console.log("you are correct");
+		// yes you are correct
+		// make sure you clear out all choices
 		pickChoice.innerHTML = "";
+		// add score + 1
 		score++;
+		// add to new question
 		currentQuestionIndex++;
+		// making sure it's not the last question
 		if (currentQuestionIndex < letsPlayQuestions.length) {
-			createQuestions();
-		} else {
+			beginQuiz();
+		}
+		// if it's the last one then you need to show the score
+		else {
 			presentScore();
 		}
-	} else {
-		console.log("you are not correct");
+	}
+	// if it's note then
+	else {
+		// no you are not correct
+		// everything is the same as correct version
 		pickChoice.innerHTML = "";
+		// only this one, you add score - 1
 		score--;
 		currentQuestionIndex++;
 		if (currentQuestionIndex < letsPlayQuestions.length) {
-			createQuestions();
+			beginQuiz();
 		} else {
 			presentScore();
 		}
 	}
 }
+
+// once you done with all questions then you need to show the result
 function presentScore() {
 	quizContainer.setAttribute("class", "hide");
 	results.removeAttribute("class", "hide");
-	results.innerHTML = "<p>Your total Score is " + score + "</p>";
+	results.innerHTML = "<h3>Your total Score is " + score + "</h3>";
+	// after 10 seconds you need to go back to main screen
 	setTimeout(goBack, 10000);
 	function goBack() {
-		results.innerHTML = "";
+		currentQuestionIndex = 0;
+		score = 0;
+		secondsLeft = 15;
+		currentAnswer = "";
 		results.setAttribute("class", "hide");
 		noShow.removeAttribute("class", "hide");
 	}
 }
-// const select = document.querySelector("select");
-// document.addEventListener("click", select, function () {
-// 	alert("this is working");
-// });
-// display quiz score
 
 pressPlay.onclick = beginQuiz;
-// Set time in a certain amount of time EXECUTE an action
-// Set
-function setTime(event) {
-	// event.preventDefault();
-
-	secondsLeft = 75;
-	setInterval(startTime, 1000);
-
+let a;
+function setTime() {
+	// first we need a variable that hold setInterval
+	// I have created a global variable "a" for that
+	a = setInterval(startTime, 1000);
 	function startTime() {
 		secondsLeft--;
-		timeEl.textContent = secondsLeft + " time until gameover";
+		timeEl.textContent = secondsLeft + " seconds left to answer this question";
 		if (secondsLeft === 0) {
-			clearInterval(startTime);
+			// clearInterval only clear that variable
+			// I also have used clearInterval at the beginQuiz() function before starting setTime()
+			clearInterval(a);
 			pickChoice.innerHTML = "";
 			score--;
 			currentQuestionIndex++;
 			if (currentQuestionIndex < letsPlayQuestions.length) {
-				createQuestions();
+				beginQuiz();
 			} else {
 				presentScore();
 			}
 		}
 	}
-
-	// var timerInterval = setInterval(function () {
-	// 	secondsLeft = -1;
-	// 	timeEl.textContent = secondsLeft + " time until gameover";
-
-	// 	if (secondsLeft === 0) {
-	// 		clearInterval(timerInterval);
-	// 		sendMessage();
-	// 	}
-	// }, 1000);
 }
