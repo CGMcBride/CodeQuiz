@@ -11,7 +11,7 @@ const results = document.getElementById("score");
 // default values
 let currentQuestionIndex = 0;
 let score = 0;
-let secondsLeft = 15;
+let secondsLeft = 75;
 let currentAnswer = "";
 
 // questions = you can run as a JSON
@@ -59,7 +59,7 @@ function beginQuiz() {
 	quizContainer.removeAttribute("class", "hide");
 	createQuestions();
 	// start timer
-	secondsLeft = 15;
+	secondsLeft = 75;
 	clearInterval(a);
 	setTime();
 }
@@ -78,7 +78,7 @@ function createQuestions() {
 
 	function yourPick(item) {
 		pickChoice.innerHTML +=
-			"<button class='select' value='" +
+			"<button class='select btn btn-outline-dark' value='" +
 			item +
 			"' onclick = 'showUp(this.value)' >" +
 			item +
@@ -89,7 +89,7 @@ function createQuestions() {
 // when you click to any choice run showUp function
 
 function showUp(e) {
-	timeEl.textContent = "15 seconds left to answer this question";
+	timeEl.textContent = "75 seconds left to answer this question";
 	// choice is matching with answer then
 	if (e === currentAnswer) {
 		// yes you are correct
@@ -134,7 +134,7 @@ function presentScore() {
 	function goBack() {
 		currentQuestionIndex = 0;
 		score = 0;
-		secondsLeft = 15;
+		secondsLeft = 75;
 		currentAnswer = "";
 		results.setAttribute("class", "hide");
 		noShow.removeAttribute("class", "hide");

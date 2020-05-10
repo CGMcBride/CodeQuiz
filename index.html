@@ -6,27 +6,33 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Code Quiz</title>
 	<link rel="stylesheet" href="style.css">
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
-	<!-- I am putting a header here to it has a title -->
-	<div id="noshow">
-		<h1>Conner's Code Quiz</h1>
-		<p>click here to play</p>
-		<button id="play">Play</button>
-	</div>
+	<div class="container">
+		<div class="row">
 
-	<div id="quiz" class="hide">
+			<!-- I am putting a header here to it has a title -->
+			<div id="noshow">
+				<h1>Conner's Code Quiz</h1>
+				<p>click here to play</p>
+				<button id="play">Play</button>
+			</div>
 
-		<h2 class="time">Time</h2>
-		<!-- two buttons will be added to get next question and submit the quiz -->
-		<h2 id="question">question goes here</h2>
-		<div id="choices" class="choices">
+			<div id="quiz" class="hide">
+
+				<h2 class="time">Time</h2>
+				<!-- two buttons will be added to get next question and submit the quiz -->
+				<h2 id="question">question goes here</h2>
+				<div id="choices" class="choices">
+				</div>
+			</div>
+			<div id="score" class="hide"></div>
+			<input id="Initials" class="hide">
 		</div>
 	</div>
-	<div id="score" class="hide"></div>
-	<input id="Initials" class="hide">
 	<script src="script.js"></script>
 </body>
 
