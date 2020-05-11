@@ -41,7 +41,7 @@ let letsPlayQuestions = [
 	},
 	{
 		title:
-			"What is the object called that lets you work with both dates and time-relaated data?",
+			"What is the object called that lets you work with both dates and time-related data?",
 		choices: ["Clock", "Time field", "Dates", "Time-warp"],
 		answer: "Dates",
 	},
@@ -72,7 +72,7 @@ function createQuestions() {
 	// answer
 	currentAnswer = currentQuestion.answer;
 	// choices
-	currentQuestion.choices.forEach(yourPick); //here you are calling function "youPick"
+	currentQuestion.choices.forEach(yourPick); //here you are calling function "yourPick"
 	// you can also write this way too
 	// currentQuestion.choices.forEach(item){ "everything inside the youPick function" };
 
