@@ -113,7 +113,7 @@ function showUp(e) {
 		// no you are not correct
 		// everything is the same as correct version
 		pickChoice.innerHTML = "";
-		// only this one, you add score - 1
+		// only this one, you add score +1
 		score--;
 		currentQuestionIndex++;
 		if (currentQuestionIndex < letsPlayQuestions.length) {
